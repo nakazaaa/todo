@@ -107,6 +107,8 @@
 /*}*/
 .layout{
   background: blue;
+  margin: 0;
+  /*width: 100%;*/
 }
 .test {
   height: 100px;

@@ -5,7 +5,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import test from "./layout.module.css";
+import layout from "./layout.module.css";
 
 
 type LayoutProps = Required<{
@@ -22,18 +22,20 @@ const Item = styled(Paper)(({ theme }) => ({
 export const Layout = ({ children }: LayoutProps) => {
   return (
     <>
+      <Header/>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Header/>
+
         </Grid>
-        <Box className={test.test}>
-          <Grid item xs={1}>
+        <Box className={layout.layout}>
+          <Grid item xs={2}>
             side
           </Grid>
-          <Grid item xs={11}>
+        </Box>
+          <Grid item xs={10}>
             {children}
           </Grid>
-        </Box>
+
       </Grid>
     </>
   )

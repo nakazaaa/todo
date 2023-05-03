@@ -7,46 +7,29 @@ import Container from '@mui/material/Container';
 import Link from 'next/link'
 import {Button, MenuItem} from "@mui/material";
 import { useRouter } from 'next/router';
-
+import { alpha } from '@mui/material/styles';
+const SIDE_NAV_WIDTH = 280;
+const TOP_NAV_HEIGHT = 64;
 export  const Header = () => {
   return (
     <>
-        <AppBar position="static">
-            <Container maxWidth="xl">
-                <Toolbar disableGutters>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="a"
-                        href="/"
-                        sx={{
-                            mr: 2,
-                            display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                        }}
-                    >
-                        ヘッダー
-                    </Typography>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} p="10px" gap={3}>
-                        <Link href={'/todo'} passHref>Todo</Link>
-                    </Box>
-                    <Box sx={{
-                        display: 'flex',
-                        flexDirection: 'row-reverse',
-                        p: 1,
-                        m: 1,
-                        color: 'inherit',
-                        borderRadius: 1,
-                        textDecoration: 'none',
-                    }}>
-                    </Box>
-                </Toolbar>
-            </Container>
-        </AppBar>
+        <Box
+            component="header"
+            sx={{
+                backdropFilter: 'blur(6px)',
+                backgroundColor: (theme) => alpha(theme.palette.background.default, 0.8),
+                position: 'sticky',
+                left: {
+                    lg: `${SIDE_NAV_WIDTH}px`
+                },
+                top: 0,
+                width: {
+                    lg: `calc(100% - ${SIDE_NAV_WIDTH}px)`
+                },
+            }}
+        >
+            test
+        </Box>
     </>
   )
 }

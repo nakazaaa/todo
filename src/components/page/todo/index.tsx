@@ -42,7 +42,8 @@ export default function TodoPage() {
             .then(function (response) {
                 console.log(response);
                 setIsDialogOpen(false)
-                router.push('/todo');
+                // router.push('/todo');
+                window.location.reload()
             })
             .catch(function (error) {console.log(error);});
     }

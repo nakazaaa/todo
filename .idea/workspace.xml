@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b4bbbe8-e83c-4dde-be1e-ac3192ee384d" name="変更" comment="[Mod]ignore修正">
+    <list default="true" id="8b4bbbe8-e83c-4dde-be1e-ac3192ee384d" name="変更" comment="[Add]header変更">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/header/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/layout/Layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/layout/Layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/layout/layout.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/layout/layout.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/todo/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/todo/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,7 +34,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/nkmng/Masaki_Programming/Next/nextjs-container/my-app",
+    "last_opened_file_path": "C:/Users/nkmng/Masaki_Programming/Next/todo",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -47,11 +46,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nkmng\Masaki_Programming\Next\todo" />
+      <recent name="C:\Users\nkmng\Masaki_Programming\Next\todo\src" />
+      <recent name="C:\Users\nkmng\Masaki_Programming\Next\todo\src\pages" />
       <recent name="C:\Users\nkmng\Masaki_Programming\Next\todo\src\components\ui\header" />
       <recent name="C:\Users\nkmng\Masaki_Programming\Next\todo\src\components\ui\side" />
-      <recent name="C:\work_nakazato\Nextjs\todo\src\components" />
-      <recent name="C:\work_nakazato\Nextjs\todo\src\pages\todo" />
-      <recent name="C:\Users\nkmng\Masaki_Programming\Next\todo\src\components\header" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\work_nakazato\Nextjs\todo\src\components\ui" />
@@ -86,6 +85,14 @@
       <workItem from="1682600363161" duration="2796000" />
       <workItem from="1683018976685" duration="5675000" />
     </task>
+    <task id="LOCAL-00001" summary="[Mod]header変更">
+      <created>1683190132277</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1683190132277</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -101,5 +108,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="[Mod]ignore修正" />
+    <MESSAGE value="[Mod]header変更" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Mod]header変更" />
   </component>
 </project>

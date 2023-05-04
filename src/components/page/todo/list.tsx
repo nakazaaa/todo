@@ -24,7 +24,7 @@ export default function TodoList() {
                 setTodoList(response.data.todos)
                 console.dir(todoList)
             })
-    },[todoList])
+    },[])
 
     return (
         <>

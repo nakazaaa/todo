@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b4bbbe8-e83c-4dde-be1e-ac3192ee384d" name="変更" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/ui/layout/Layout.tsx" afterDir="false" />
+    <list default="true" id="8b4bbbe8-e83c-4dde-be1e-ac3192ee384d" name="変更" comment="[Mod]ignore修正">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Layout.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/header/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/header/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/layout/Layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/layout/Layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/layout/layout.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/layout/layout.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/todo/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/todo/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,22 +35,23 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/work_nakazato/Nextjs/todo/src/components",
+    "last_opened_file_path": "C:/Users/nkmng/Masaki_Programming/Next/nextjs-container/my-app",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\work_nakazato\\Nextjs\\todo\\node_modules\\typescript\\lib",
+    "ts.external.directory.path": "C:\\Users\\nkmng\\Masaki_Programming\\Next\\todo\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nkmng\Masaki_Programming\Next\todo\src\components\ui\header" />
+      <recent name="C:\Users\nkmng\Masaki_Programming\Next\todo\src\components\ui\side" />
       <recent name="C:\work_nakazato\Nextjs\todo\src\components" />
       <recent name="C:\work_nakazato\Nextjs\todo\src\pages\todo" />
       <recent name="C:\Users\nkmng\Masaki_Programming\Next\todo\src\components\header" />
-      <recent name="C:\Users\nkmng\Masaki_Programming\Next\todo\src\components" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\work_nakazato\Nextjs\todo\src\components\ui" />

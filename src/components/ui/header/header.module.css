@@ -1,0 +1,68 @@
+.header-box {
+  height: 80px;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, .1);
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 100px;
+}
+
+.logo {
+  width: 20%;
+  height: 80px;
+  text-align: center;
+  line-height: 80px;
+  font-size: 20px;
+  font-weight: 600;
+  background: skyblue;
+}
+
+.nav {
+  width: 30%;
+}
+
+.ul {
+  width: 100%;
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 10px;
+}
+
+.li {
+  width: 33%;
+}
+
+.a {
+  display: block;
+  width: 100%;
+  line-height: 80px;
+  text-align: center;
+}
+
+.mobile-menu {
+  display: none;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 80px;
+  text-align: center;
+}
+
+/* モバイル用表示切り替え */
+@media (max-width: 800px) {
+  .mobile-menu {
+    display: block;
+  }
+
+  .pc-menu {
+    width: 30%;
+    /*display: none;*/
+  }
+}

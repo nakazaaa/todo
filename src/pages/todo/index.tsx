@@ -36,11 +36,11 @@ export default function index() {
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell>testHead</TableCell>
-                  <TableCell align="right">testHead</TableCell>
-                  <TableCell align="right">testHead</TableCell>
-                  <TableCell align="right">testHead</TableCell>
-                  <TableCell align="right">testHead</TableCell>
+                  <TableCell>タイトル</TableCell>
+                  <TableCell align="right">内容</TableCell>
+                  <TableCell align="right">ステータス</TableCell>
+                  <TableCell align="right">時間</TableCell>
+
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -49,12 +49,12 @@ export default function index() {
                   // sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    test
+                    タイトル
                   </TableCell>
-                  <TableCell align="right">test</TableCell>
-                  <TableCell align="right">test</TableCell>
-                  <TableCell align="right">test</TableCell>
-                  <TableCell align="right">test</TableCell>
+                  <TableCell align="right">内容</TableCell>
+                  <TableCell align="right">ステータス</TableCell>
+                  <TableCell align="right">時間</TableCell>
+
                 </TableRow>
               </TableBody>
             </Table>

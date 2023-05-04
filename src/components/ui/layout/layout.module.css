@@ -105,9 +105,20 @@
 /*    !*color-scheme: dark;*!*/
 /*  }*/
 /*}*/
+/** {*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*}*/
+
+.app {
+  /*width: 100vw;*/
+  /*height: 100vh;*/
+  /*display: flex;*/
+  /*flex-direction: column;*/
+}
 .layout{
   background: blue;
-  margin: 0;
+  margin: 110px;
   /*width: 100%;*/
 }
 .test {

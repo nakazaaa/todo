@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b4bbbe8-e83c-4dde-be1e-ac3192ee384d" name="変更" comment="[Add]header変更">
+    <list default="true" id="8b4bbbe8-e83c-4dde-be1e-ac3192ee384d" name="変更" comment="[Add]ログインページ追加">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/todo/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/todo/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,7 +32,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/nkmng/Masaki_Programming/Next/todo",
+    "last_opened_file_path": "C:/Users/nkmng/Masaki_Programming/Next/todo/src/pages/todo",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -46,13 +44,16 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nkmng\Masaki_Programming\Next\todo\src\pages\todo" />
       <recent name="C:\Users\nkmng\Masaki_Programming\Next\todo" />
       <recent name="C:\Users\nkmng\Masaki_Programming\Next\todo\src" />
       <recent name="C:\Users\nkmng\Masaki_Programming\Next\todo\src\pages" />
       <recent name="C:\Users\nkmng\Masaki_Programming\Next\todo\src\components\ui\header" />
-      <recent name="C:\Users\nkmng\Masaki_Programming\Next\todo\src\components\ui\side" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nkmng\Masaki_Programming\Next\todo\src\components" />
+      <recent name="C:\Users\nkmng\Masaki_Programming\Next\todo\src\pages\todo" />
+      <recent name="C:\Users\nkmng\Masaki_Programming\Next\todo\src\pages" />
       <recent name="C:\work_nakazato\Nextjs\todo\src\components\ui" />
       <recent name="C:\work_nakazato\Nextjs\todo\src\components\layout" />
     </key>

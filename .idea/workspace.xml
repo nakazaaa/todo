@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b4bbbe8-e83c-4dde-be1e-ac3192ee384d" name="変更" comment="[Add]todo詳細ページ追加">
+    <list default="true" id="8b4bbbe8-e83c-4dde-be1e-ac3192ee384d" name="変更" comment="[Add]ログアウト状態ログイン状態画面制御">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/todo/[todo_id]/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/todo/[todo_id]/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,21 +27,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/nkmng/Masaki_Programming/Next/nextjs-container/my-app",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Users\\nkmng\\Masaki_Programming\\Next\\todo\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/nkmng/Masaki_Programming/Next/nextjs-container/my-app&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\nkmng\\Masaki_Programming\\Next\\todo\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\nkmng\Masaki_Programming\Next\todo\src\pages\todo" />
@@ -85,7 +85,7 @@
       <updated>1682600361003</updated>
       <workItem from="1682600363161" duration="2796000" />
       <workItem from="1683018976685" duration="5675000" />
-      <workItem from="1683417191985" duration="924000" />
+      <workItem from="1683417191985" duration="1774000" />
     </task>
     <task id="LOCAL-00001" summary="[Mod]header変更">
       <created>1683190132277</created>
@@ -101,7 +101,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683196772445</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="[Add]ログアウト状態ログイン状態画面制御">
+      <created>1683418871728</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1683418871728</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -122,6 +129,7 @@
     <MESSAGE value="[Mod]ignore修正" />
     <MESSAGE value="[Mod]header変更" />
     <MESSAGE value="[Add]todo詳細ページ追加" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Add]todo詳細ページ追加" />
+    <MESSAGE value="[Add]ログアウト状態ログイン状態画面制御" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Add]ログアウト状態ログイン状態画面制御" />
   </component>
 </project>

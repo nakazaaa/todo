@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8b4bbbe8-e83c-4dde-be1e-ac3192ee384d" name="変更" comment="[Add]ログアウト状態ログイン状態画面制御">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/todo/[todo_id]/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/todo/[todo_id]/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/header/Header.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

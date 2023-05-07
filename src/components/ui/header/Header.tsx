@@ -6,12 +6,19 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from 'next/link'
 import {Button, MenuItem} from "@mui/material";
-import { useRouter } from 'next/router';
 import { alpha } from '@mui/material/styles';
 import header from "./header.module.css";
-const SIDE_NAV_WIDTH = 280;
-const TOP_NAV_HEIGHT = 64;
+import { useRouter } from 'next/router';
+import customAxios from "@/lib/customAxios";
+
 export  const Header = () => {
+    const router = useRouter();
+    const logout = () => {
+        customAxios.post(process.env.NEXT_PUBLIC_API_HOST+'/api/logout')
+            .then((response) => {
+                router.push('/login');
+            })
+    }
   return (
     <>
         <header className={header.header}>
@@ -37,6 +44,17 @@ export  const Header = () => {
                 {/*<li className={header.li}><a href="#">Menu 2</a></li>*/}
                 {/*<li className={header.li}><a href="#">Menu 3</a></li>*/}
             </ul>
+            <Box sx={{
+                display: 'flex',
+                flexDirection: 'row-reverse',
+                p: 1,
+                m: 1,
+                color: 'inherit',
+                borderRadius: 1,
+                textDecoration: 'none',
+            }}>
+                <Button onClick={logout}   color="inherit" variant="text" >logout</Button>
+            </Box>
         </header>
         {/*<Box*/}
         {/*    component="header"*/}

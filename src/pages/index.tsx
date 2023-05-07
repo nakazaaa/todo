@@ -1,17 +1,22 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
-import {Layout} from "@/components/ui/layout/Layout";
+import {Layout} from '@/components/ui/layout/Layout'
+import {useEffect} from "react";
+import customAxios from "@/lib/customAxios";
+import {useRouter} from "next/router";
 
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-  return (
-    <>
-        <Layout>
-            <h1>test</h1>
-        </Layout>
-    </>
-  )
+    const router = useRouter()
+    useEffect(() =>{
+        customAxios.get(process.env.NEXT_PUBLIC_API_HOST+'/api/me').then((response) => {
+            router.push('/todo')
+        }).catch(() => {
+                router.push('/login')
+            }
+        )},[])
+
+    return (
+            <>
+            </>
+
+    )
 }

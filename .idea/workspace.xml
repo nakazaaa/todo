@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b4bbbe8-e83c-4dde-be1e-ac3192ee384d" name="変更" comment="[Add]ログアウト処理追加">
+    <list default="true" id="8b4bbbe8-e83c-4dde-be1e-ac3192ee384d" name="変更" comment="[Mod]ソースもろもろ編集">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/todo/[todo_id]/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/todo/[todo_id]/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/_app.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,23 +32,23 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/nkmng/Masaki_Programming/Next/todo",
+    "last_opened_file_path": "C:/work_nakazato/Nextjs/todo/src/components/ui/loading",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Users\\nkmng\\Masaki_Programming\\Next\\todo\\node_modules\\typescript\\lib",
+    "ts.external.directory.path": "C:\\work_nakazato\\Nextjs\\todo\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\work_nakazato\Nextjs\todo\src\components\ui\loading" />
       <recent name="C:\Users\nkmng\Masaki_Programming\Next\todo\src\pages\todo" />
       <recent name="C:\Users\nkmng\Masaki_Programming\Next\todo" />
       <recent name="C:\Users\nkmng\Masaki_Programming\Next\todo\src" />
       <recent name="C:\Users\nkmng\Masaki_Programming\Next\todo\src\pages" />
-      <recent name="C:\Users\nkmng\Masaki_Programming\Next\todo\src\components\ui\header" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\nkmng\Masaki_Programming\Next\todo\src\components" />
@@ -116,7 +116,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683420280623</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="[Mod]ソースもろもろ編集">
+      <created>1683540186273</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1683540186273</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,6 +146,7 @@
     <MESSAGE value="[Add]todo詳細ページ追加" />
     <MESSAGE value="[Add]ログアウト状態ログイン状態画面制御" />
     <MESSAGE value="[Add]ログアウト処理追加" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Add]ログアウト処理追加" />
+    <MESSAGE value="[Mod]ソースもろもろ編集" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Mod]ソースもろもろ編集" />
   </component>
 </project>

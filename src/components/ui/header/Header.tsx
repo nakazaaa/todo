@@ -1,12 +1,7 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import Link from 'next/link'
 import {Button, MenuItem} from "@mui/material";
-import { alpha } from '@mui/material/styles';
 import header from "./header.module.css";
 import { useRouter } from 'next/router';
 import customAxios from "@/lib/customAxios";
@@ -30,20 +25,20 @@ export  const Header = () => {
             >
                 ヘッダー
             </Typography>
-            <ul className={header.ul}>
-                <li className={header.li}>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="a"
-                        href="/todo"
-                >
-                    todo
-                </Typography>
-                </li>
-                {/*<li className={header.li}><a href="#">Menu 2</a></li>*/}
-                {/*<li className={header.li}><a href="#">Menu 3</a></li>*/}
-            </ul>
+            {/*<ul className={header.ul}>*/}
+            {/*    <li className={header.li}>*/}
+            {/*        <Typography*/}
+            {/*            variant="h6"*/}
+            {/*            noWrap*/}
+            {/*            component="a"*/}
+            {/*            href="/todo"*/}
+            {/*    >*/}
+            {/*        todo*/}
+            {/*    </Typography>*/}
+            {/*    </li>*/}
+            {/*    /!*<li className={header.li}><a href="#">Menu 2</a></li>*!/*/}
+            {/*    /!*<li className={header.li}><a href="#">Menu 3</a></li>*!/*/}
+            {/*</ul>*/}
             <Box sx={{
                 display: 'flex',
                 flexDirection: 'row-reverse',

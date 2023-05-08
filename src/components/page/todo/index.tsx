@@ -1,29 +1,22 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../../../../../nextjs-container/my-app/src/styles/Home.module.css'
-import Link from 'next/link'
-import ButtonBase from '../../../../../nextjs-container/my-app/src/components/ui/button/button'
 import React, {SetStateAction, useState} from "react";
 import {Button, DialogTitle, Grid, Stack, TextField} from '@mui/material'
 import TodoList from "./list";
-import Box from "@mui/material/Box";
 import Dialog from '@mui/material/Dialog';
-import axios from "axios";
-import customAxios from "../../../../../nextjs-container/my-app/src/lib/customAxios";
-import { green } from '@mui/material/colors';
-import Icon from '@mui/material/Icon';
+import customAxios from "@/lib/customAxios";
 import Typography from "@mui/material/Typography";
 import {useRouter} from "next/router";
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Input from '@mui/material/Input';
-import {number} from "prop-types";
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
 
 export default function TodoPage() {
+    type PostData = {
+        title:string,
+        text:string,
+        time:number,
+        status:number,
+    }
     const [IsDialogOpen, setIsDialogOpen] = useState(false)
-
     const OpenDialog = () => {
         setIsDialogOpen(true)
     }
@@ -36,13 +29,12 @@ export default function TodoPage() {
     const [time, setTime] = useState(0);
     const router = useRouter();
     const AddTodo = () => {
-        const PostData = {title:title,text:text,time:time,status:0}
-        const url = process.env.NEXT_PUBLIC_API_HOST+'/api/todo'
+        const PostData:PostData = {title:title,text:text,time:time,status:0}
+        const url:string = process.env.NEXT_PUBLIC_API_HOST+'/api/todo'
         customAxios.post(url,PostData)
             .then(function (response) {
                 console.log(response);
                 setIsDialogOpen(false)
-                // router.push('/todo');
                 window.location.reload()
             })
             .catch(function (error) {console.log(error);});
@@ -58,15 +50,19 @@ export default function TodoPage() {
 
     const handleChangeTime = (event: { target: { value: SetStateAction<number> } }) => {
         setTime(event.target.value);
-        return time;
     };
     return (
         <>
-            {/*<ButtonBase ></ButtonBase>*/}
-            <Button sx={{ margin: 2 }} onClick={OpenDialog}>追加</Button>
+            <Fab onClick={OpenDialog} color="primary" aria-label="add">
+                <AddIcon/>
+            </Fab>
             <TodoList/>
             <Grid item xs={8}>
-                <Dialog open={IsDialogOpen}>
+                {/*TODO ダイアログ統一化する*/}
+                <Dialog
+                  sx={{ '& .MuiDialog-paper': { width: '80%' } }}
+                  open={IsDialogOpen}
+                >
                     <DialogTitle bgcolor="secondary">
                         Todo追加
                     </DialogTitle>
@@ -100,8 +96,8 @@ export default function TodoPage() {
                             onChange={handleChangeTime}
                         />
                     </Stack>
-                    <Button onClick={CloseDialog}>Close</Button>
-                    <Button onClick={AddTodo}>Add</Button>
+                    <Button sx={{ marginLeft: 10 ,marginRight:10,marginBottom:2}} color="error"  onClick={CloseDialog}>Close</Button>
+                    <Button sx={{ marginLeft: 10 ,marginRight:10 ,marginBottom:5}} onClick={AddTodo}>Add</Button>
                 </Dialog>
             </Grid>
 

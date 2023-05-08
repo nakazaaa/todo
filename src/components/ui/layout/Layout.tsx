@@ -1,11 +1,9 @@
 import {Header} from "@/components/ui/header/Header";
 import React, {ReactElement, useContext} from 'react'
-// import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import layout from "./layout.module.css";;
+import layout from "./layout.module.css";
 
 type LayoutProps = Required<{
     readonly children: ReactElement

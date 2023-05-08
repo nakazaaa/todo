@@ -1,5 +1,5 @@
 import {Layout} from "@/components/ui/layout/Layout"
-import {SetStateAction, useEffect, useState} from "react";
+import {SetStateAction, useContext, useEffect, useState} from "react";
 import customAxios from "@/lib/customAxios";
 import Box from "@mui/material/Box";
 import { useRouter } from 'next/router'
@@ -11,6 +11,7 @@ import Dialog from "@mui/material/Dialog";
 import Input from "@mui/material/Input";
 import EditIcon from '@mui/icons-material/Edit';
 import Fab from '@mui/material/Fab';
+import {loadingContext} from "@/pages/_app";
 
 export default function index() {
     type PostData = {
@@ -25,17 +26,19 @@ export default function index() {
     const [status,setStatus] = useState(0);
     const [time,setTime] = useState(0);
     const router = useRouter();
-
+    const {open,setOpen} = useContext(loadingContext);
     useEffect(() =>{
         if (!router.isReady) {
             return;
         }
         const todo_id : string | string[] | undefined = router.query.todo_id;
         customAxios.get(process.env.NEXT_PUBLIC_API_HOST+'/api/todo/'+todo_id).then((response) => {
+            setOpen(true);
             setTitle(response.data.todo.title);
             setText(response.data.todo.text);
             setStatus(response.data.todo.status);
             setTime(response.data.todo.time);
+            setOpen(false);
         })
     },[router]);
     const handleChangeTitle = (event: { target: { value: SetStateAction<string> } }) => {

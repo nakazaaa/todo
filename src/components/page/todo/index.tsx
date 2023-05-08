@@ -1,4 +1,4 @@
-import React, {SetStateAction, useState} from "react";
+import React, {SetStateAction, useContext, useState} from "react";
 import {Button, DialogTitle, Grid, Stack, TextField} from '@mui/material'
 import TodoList from "./list";
 import Dialog from '@mui/material/Dialog';
@@ -8,6 +8,7 @@ import {useRouter} from "next/router";
 import Input from '@mui/material/Input';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
+import {loadingContext} from "@/pages/_app";
 
 export default function TodoPage() {
     type PostData = {
@@ -27,17 +28,24 @@ export default function TodoPage() {
     const [title, setTitle] = useState("");
     const [text, setText] = useState("");
     const [time, setTime] = useState(0);
+    const {open,setOpen} = useContext(loadingContext);
     const router = useRouter();
     const AddTodo = () => {
         const PostData:PostData = {title:title,text:text,time:time,status:0}
         const url:string = process.env.NEXT_PUBLIC_API_HOST+'/api/todo'
         customAxios.post(url,PostData)
             .then(function (response) {
+                setOpen(true);
                 console.log(response);
                 setIsDialogOpen(false)
-                window.location.reload()
+
             })
-            .catch(function (error) {console.log(error);});
+            .catch(function (error) {console.log(error);})
+            .then(function (response) {
+                setOpen(false);
+                window.location.reload();
+            }
+        );
     }
 
     const handleChangeTitle = (event: { target: { value: SetStateAction<string> } }) => {

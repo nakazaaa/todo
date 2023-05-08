@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="8b4bbbe8-e83c-4dde-be1e-ac3192ee384d" name="変更" comment="[Mod]ソースもろもろ編集">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/page/todo/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/todo/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/loading/Loading.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/loading/Loading.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/_app.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/todo/[todo_id]/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/todo/[todo_id]/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +42,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\work_nakazato\\Nextjs\\todo\\node_modules\\typescript\\lib",
+    "ts.external.directory.path": "C:\\Users\\nkmng\\Masaki_Programming\\Next\\todo\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>

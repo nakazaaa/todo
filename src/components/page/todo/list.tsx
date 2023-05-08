@@ -1,14 +1,8 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../../../../../nextjs-container/my-app/src/styles/Home.module.css'
 import Link from 'next/link'
-import ButtonBase from '../../../../../nextjs-container/my-app/src/components/ui/button/button'
 import {useEffect, useState} from "react";
 import {Button, Card, CardContent} from '@mui/material'
-import Data from '../../../../../nextjs-container/my-app/data/todo.json'
-import axios from "axios";
 import * as React from "react";
-import customAxios from "../../../../../nextjs-container/my-app/src/lib/customAxios"
+import customAxios from "@/lib/customAxios";
 import Typography from "@mui/material/Typography";
 import Grid from '@mui/material/Grid';
 

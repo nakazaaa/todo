@@ -1,4 +1,4 @@
-import React, {SetStateAction, useContext, useState} from "react";
+import React, {SetStateAction, useContext, useEffect, useState} from "react";
 import {Button, DialogTitle, Grid, Stack, TextField} from '@mui/material'
 import TodoList from "./list";
 import Dialog from '@mui/material/Dialog';
@@ -17,7 +17,22 @@ export default function TodoPage() {
         time:number,
         status:number,
     }
+
+    const [title, setTitle] = useState("");
+    const [text, setText] = useState("");
+    const [time, setTime] = useState(0);
+    const {open,setOpen} = useContext(loadingContext);
+    const router = useRouter();
+    const [todoList,setTodoList] = useState([]);
     const [IsDialogOpen, setIsDialogOpen] = useState(false)
+
+    useEffect(() =>{
+        setOpen(true);
+        getTodoList().then(() => {
+            setOpen(false);
+        });
+    },[]);
+
     const OpenDialog = () => {
         setIsDialogOpen(true)
     }
@@ -25,46 +40,49 @@ export default function TodoPage() {
     const CloseDialog = () => {
         setIsDialogOpen(false)
     }
-    const [title, setTitle] = useState("");
-    const [text, setText] = useState("");
-    const [time, setTime] = useState(0);
-    const {open,setOpen} = useContext(loadingContext);
-    const router = useRouter();
-    const AddTodo = () => {
-        const PostData:PostData = {title:title,text:text,time:time,status:0}
-        const url:string = process.env.NEXT_PUBLIC_API_HOST+'/api/todo'
-        customAxios.post(url,PostData)
-            .then(function (response) {
-                setOpen(true);
-                console.log(response);
-                setIsDialogOpen(false)
 
-            })
-            .catch(function (error) {console.log(error);})
-            .then(function (response) {
-                setOpen(false);
-                window.location.reload();
-            }
-        );
-    }
+    const getTodoList = async (): Promise<void> => {
+         await customAxios.get(process.env.NEXT_PUBLIC_API_HOST+'/api/todo')
+          .then((response) => {
+            setTodoList(response.data.todos);
+        })
+    };
 
-    const handleChangeTitle = (event: { target: { value: SetStateAction<string> } }) => {
+    const handleChangeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value);
     };
 
-    const handleChangeText = (event: { target: { value: SetStateAction<string> } }) => {
+    const handleChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
         setText(event.target.value);
     };
 
-    const handleChangeTime = (event: { target: { value: SetStateAction<number> } }) => {
-        setTime(event.target.value);
+    const handleChangeTime = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const inputTime = Number(event.target.value);
+        setTime(inputTime);
     };
+
+    const AddTodo = async (): Promise<void> => {
+        setIsDialogOpen(false);
+        setOpen(true);
+        const PostData:PostData = {title:title,text:text,time:time,status:0};
+        const url:string = process.env.NEXT_PUBLIC_API_HOST+'/api/todo';
+        await customAxios.post(url,PostData)
+            .then(function () {
+                getTodoList();
+                setOpen(false);
+            })
+            .catch(function (error) {
+                  setOpen(false);
+            });
+    }
+
+
     return (
         <>
             <Fab onClick={OpenDialog} color="primary" aria-label="add">
                 <AddIcon/>
             </Fab>
-            <TodoList/>
+            <TodoList todoList={todoList}/>
             <Grid item xs={8}>
                 {/*TODO ダイアログ統一化する*/}
                 <Dialog
@@ -97,8 +115,6 @@ export default function TodoPage() {
                         <Input
                             sx={{ margin: 2 }}
                             multiline
-                            type="number"
-                            variant="filled"
                             rows={1}
                             value={time}
                             onChange={handleChangeTime}

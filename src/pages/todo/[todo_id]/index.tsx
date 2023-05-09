@@ -1,5 +1,5 @@
 import {Layout} from "@/components/ui/layout/Layout"
-import {SetStateAction, useContext, useEffect, useState} from "react";
+import {SetStateAction, useContext, useEffect, useMemo, useState} from "react";
 import customAxios from "@/lib/customAxios";
 import Box from "@mui/material/Box";
 import { useRouter } from 'next/router'
@@ -12,6 +12,7 @@ import Input from "@mui/material/Input";
 import EditIcon from '@mui/icons-material/Edit';
 import Fab from '@mui/material/Fab';
 import {loadingContext} from "@/pages/_app";
+import {useMenu} from "@mui/base";
 
 export default function index() {
     type PostData = {
@@ -20,12 +21,13 @@ export default function index() {
         time:number,
         status:number,
     }
-
+    const router = useRouter();
+    const todoId = useMemo(()=> router.query.todo_id,[router]);
     const [title,setTitle] = useState('');
     const [text,setText] = useState('');
     const [status,setStatus] = useState(0);
     const [time,setTime] = useState(0);
-    const router = useRouter();
+
     const {open,setOpen} = useContext(loadingContext);
     useEffect(() =>{
         if (!router.isReady) {
@@ -40,7 +42,7 @@ export default function index() {
             setTime(response.data.todo.time);
             setOpen(false);
         })
-    },[router]);
+    },[router.isReady,todoId]);
     const handleChangeTitle = (event: { target: { value: SetStateAction<string> } }) => {
         setTitle(event.target.value);
     };

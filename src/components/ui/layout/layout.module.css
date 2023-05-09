@@ -105,9 +105,21 @@
 /*    !*color-scheme: dark;*!*/
 /*  }*/
 /*}*/
-body {
-  margin: 0;
+/** {*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*}*/
+
+.app {
+  /*width: 100vw;*/
+  /*height: 100vh;*/
+  /*display: flex;*/
+  /*flex-direction: column;*/
 }
-html{
-  height: 100%;
+.layout{
+  margin: 110px;
+  /*width: 100%;*/
+}
+.test {
+  height: 100px;
 }

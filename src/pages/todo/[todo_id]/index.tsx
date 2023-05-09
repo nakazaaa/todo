@@ -27,33 +27,36 @@ export default function index() {
     const [text,setText] = useState('');
     const [status,setStatus] = useState(0);
     const [time,setTime] = useState(0);
-
     const {open,setOpen} = useContext(loadingContext);
     useEffect(() =>{
         if (!router.isReady) {
             return;
         }
+        setOpen(true);
         const todo_id : string | string[] | undefined = router.query.todo_id;
-        customAxios.get(process.env.NEXT_PUBLIC_API_HOST+'/api/todo/'+todo_id).then((response) => {
-            setOpen(true);
+        customAxios.get(process.env.NEXT_PUBLIC_API_HOST+'/api/todo/'+todo_id)
+          .then((response) => {
             setTitle(response.data.todo.title);
             setText(response.data.todo.text);
             setStatus(response.data.todo.status);
             setTime(response.data.todo.time);
             setOpen(false);
-        })
+        }).catch(()=>{
+            setOpen(false);
+          }
+        )
     },[router.isReady,todoId]);
-    const handleChangeTitle = (event: { target: { value: SetStateAction<string> } }) => {
+    const handleChangeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value);
     };
 
-    const handleChangeText = (event: { target: { value: SetStateAction<string> } }) => {
+    const handleChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
         setText(event.target.value);
     };
 
-    const handleChangeTime = (event: { target: { value: SetStateAction<number> } }) => {
-        setTime(event.target.value);
-        return time;
+    const handleChangeTime = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const inputTime = Number(event.target.value);
+        setTime(inputTime);
     };
     const [IsDialogOpen, setIsDialogOpen] = useState(false)
 
@@ -66,12 +69,14 @@ export default function index() {
     }
 
     const EditTodo = () => {
+        setIsDialogOpen(false);
+        setOpen(true);
         const PostData :PostData = {title:title,text:text,time:time,status:0}
         const url:string = process.env.NEXT_PUBLIC_API_HOST+'/api/todo/'+router.query.todo_id
         customAxios.post(url,PostData)
           .then(function (response) {
               console.log(response);
-              setIsDialogOpen(false);
+              setOpen(false);
               window.location.reload();
           })
           .catch(function (error) {console.log(error);});
@@ -151,8 +156,6 @@ export default function index() {
                           <Input
                             sx={{ margin: 2 }}
                             multiline
-                            type="number"
-                            variant="filled"
                             rows={1}
                             value={time}
                             onChange={handleChangeTime}

@@ -10,17 +10,21 @@ export const loadingContext =  createContext({} as {
     open: boolean
     setOpen: React.Dispatch<React.SetStateAction<boolean>>
 })
-
+export const dialogContext =  createContext({} as {
+  isOpenDialog: boolean
+  setIsOpenDialog: React.Dispatch<React.SetStateAction<boolean>>
+})
 export default function App({ Component, pageProps }: AppProps) {
     const [open, setOpen] = useState(false);
+    const [isOpenDialog, setIsOpenDialog] = useState(false);
   return (
     <>
-        <loadingContext.Provider value={{open, setOpen }}>
-            <Component {...pageProps} />
-            <Loading/>
-        </loadingContext.Provider>
-
+      <loadingContext.Provider value={{open, setOpen }}>
+        <dialogContext.Provider value={{isOpenDialog, setIsOpenDialog }}>
+          <Component {...pageProps} />
+          <Loading/>
+        </dialogContext.Provider>
+      </loadingContext.Provider>
     </>
-
   )
 }

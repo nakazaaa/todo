@@ -11,8 +11,9 @@ import Dialog from "@mui/material/Dialog";
 import Input from "@mui/material/Input";
 import EditIcon from '@mui/icons-material/Edit';
 import Fab from '@mui/material/Fab';
-import {loadingContext} from "@/pages/_app";
+import {dialogContext, loadingContext} from "@/pages/_app";
 import {useMenu} from "@mui/base";
+import {CustomDialog} from "@/components/ui/dialog/CustomDialog";
 
 export default function index() {
     type PostData = {
@@ -28,6 +29,7 @@ export default function index() {
     const [status,setStatus] = useState(0);
     const [time,setTime] = useState(0);
     const {open,setOpen} = useContext(loadingContext);
+    const {isOpenDialog,setIsOpenDialog} = useContext(dialogContext);
     useEffect(() =>{
         if (!router.isReady) {
             return;
@@ -61,7 +63,7 @@ export default function index() {
     const [IsDialogOpen, setIsDialogOpen] = useState(false)
 
     const OpenDialog = () => {
-        setIsDialogOpen(true);
+        setIsOpenDialog(true);
     }
 
     const CloseDialog = () => {
@@ -127,43 +129,7 @@ export default function index() {
                   </Paper>
               </Box>
               <Grid item xs={8}>
-                  {/*TODO ダイアログ統一化する*/}
-                  <Dialog
-                    sx={{ '& .MuiDialog-paper': { width: '80%' } }}
-                          open={IsDialogOpen}>
-                      <DialogTitle bgcolor="secondary">
-                          Todo編集
-                      </DialogTitle>
-                      <Stack >
-                          <Typography sx={{ margin: 1 }} variant="h6" gutterBottom>タイトル</Typography>
-                          <TextField sx={{ margin: 2 }}
-                                     id="outlined-basic"
-                                     variant="outlined"
-                                     value={title}
-                                     onChange={handleChangeTitle}
-                          />
-                          <Typography sx={{ margin: 1 }} variant="h6" gutterBottom>内容</Typography>
-                          <TextField
-                            sx={{ margin: 2 }}
-                            id="filled-textarea"
-                            multiline
-                            variant="filled"
-                            rows={4}
-                            value={text}
-                            onChange={handleChangeText}
-                          />
-                          <Typography sx={{ margin: 1 }} variant="h6" gutterBottom>時間</Typography>
-                          <Input
-                            sx={{ margin: 2 }}
-                            multiline
-                            rows={1}
-                            value={time}
-                            onChange={handleChangeTime}
-                          />
-                      </Stack>
-                      <Button sx={{ marginLeft: 10 ,marginRight:10 ,marginBottom:5}} color="error" onClick={CloseDialog}>Close</Button>
-                      <Button sx={{ marginLeft: 10 ,marginRight:10 ,marginBottom:5}} color="success" onClick={EditTodo}>Update</Button>
-                  </Dialog>
+                  <CustomDialog title={title} text={text} time={time} status={status} />
               </Grid>
           </>
       </Layout>

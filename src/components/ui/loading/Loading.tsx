@@ -6,11 +6,11 @@ import {loadingContext} from "@/pages/_app";
 
 
 export  const Loading = () => {
-  const {open,setOpen} = useContext(loadingContext);
+  const {isOpenLoading,setIsOpenLoading} = useContext(loadingContext);
   return (
     <Backdrop
       sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-      open={open}
+      open={isOpenLoading}
     >
       <CircularProgress color="inherit" />
     </Backdrop>

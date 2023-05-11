@@ -21,15 +21,14 @@ export default function TodoPage() {
     const [title, setTitle] = useState("");
     const [text, setText] = useState("");
     const [time, setTime] = useState(0);
-    const {open,setOpen} = useContext(loadingContext);
-    const router = useRouter();
+    const {isOpenLoading,setIsOpenLoading} = useContext(loadingContext);
     const [todoList,setTodoList] = useState([]);
     const [IsDialogOpen, setIsDialogOpen] = useState(false)
 
     useEffect(() =>{
-        setOpen(true);
+        setIsOpenLoading(true);
         getTodoList().then(() => {
-            setOpen(false);
+            setIsOpenLoading(false);
         });
     },[]);
 
@@ -63,16 +62,16 @@ export default function TodoPage() {
 
     const AddTodo = async (): Promise<void> => {
         setIsDialogOpen(false);
-        setOpen(true);
+        setIsOpenLoading(true);
         const PostData:PostData = {title:title,text:text,time:time,status:0};
         const url:string = process.env.NEXT_PUBLIC_API_HOST+'/api/todo';
         await customAxios.post(url,PostData)
             .then(function () {
                 getTodoList();
-                setOpen(false);
+                setIsOpenLoading(false);
             })
             .catch(function (error) {
-                  setOpen(false);
+                  setIsOpenLoading(false);
             });
     }
 

@@ -5,9 +5,10 @@ import Input from "@mui/material/Input";
 import Dialog from "@mui/material/Dialog";
 import {useContext, useEffect, useState} from "react";
 import customAxios from "@/lib/customAxios";
-import {dialogContext, loadingContext} from "@/pages/_app";
 import {useRouter} from "next/router";
 import {CustomButton} from "@/components/ui/button/CustomButton";
+import {GlobalState} from "@/context/GlobalProvider";
+
 type Props = {
   title:string,
   text:string,
@@ -25,15 +26,14 @@ type PostData = {
 }
 
 export  const CustomDialog = (props:Props) => {
-  const {isOpenDialog,setIsOpenDialog} = useContext(dialogContext);
-  const [IsDialogOpen, setIsDialogOpen] = useState(false)
+
   const [title,setTitle] = useState(props.title);
   const [text,setText] = useState(props.text);
   const [status,setStatus] = useState(props.status);
   const [time,setTime] = useState(props.time);
   const dialogTitle = props.dialogTitle;
   const router = useRouter();
-  const {isOpenLoading,setIsOpenLoading} = useContext(loadingContext);
+  const {loading,dialog} = useContext(GlobalState);
 
   useEffect(() => {
     setTitle(props.title);
@@ -56,13 +56,13 @@ export  const CustomDialog = (props:Props) => {
   };
 
   const CloseDialog = () => {
-    setIsOpenDialog(false);
+    dialog.set(false);
   }
 
 
   const EditTodo = () => {
-    setIsDialogOpen(false);
-    setIsOpenLoading(true);
+    dialog.set(false);
+    loading.set(true);
     const PostData :PostData = {title:title,text:text,time:time,status:status}
     const url:string = process.env.NEXT_PUBLIC_API_HOST+'/api/todo/'+router.query.todo_id
 
@@ -70,7 +70,7 @@ export  const CustomDialog = (props:Props) => {
       .then((response) => {
         customAxios.get(process.env.NEXT_PUBLIC_API_HOST+'/api/todo/'+router.query.todo_id)
           .then((response) => {
-            setIsOpenLoading(false);
+            loading.set(false);
           });
       })
       .catch(function (error) {console.log(error);});
@@ -79,7 +79,8 @@ export  const CustomDialog = (props:Props) => {
   return (
     <Dialog
       sx={{ '& .MuiDialog-paper': { width: '80%' } }}
-      open={isOpenDialog}>
+      open={dialog.isOpen}
+    >
       <DialogTitle bgcolor="secondary">
         {dialogTitle}
       </DialogTitle>
@@ -118,7 +119,6 @@ export  const CustomDialog = (props:Props) => {
           // return <CustomButton  sx={{ marginLeft: 10 ,marginRight:10 ,marginBottom:5}} onClick={AddTodo}>Add</CustomButton>
         }
       })()}
-
     </Dialog>
   )
 }

@@ -7,7 +7,8 @@
   top: 0;
   left: 0;
   width: 100%;
-  background: rgba(0, 0, 0, .1);
+  height: 110px;
+  background: rgb(255,255,255);
   z-index: 100;
   display: flex;
   justify-content: space-between;
@@ -15,13 +16,13 @@
 }
 
 .logo {
-  width: 20%;
-  height: 80px;
+  width: 200px;
+  height: 100%;
   text-align: center;
   line-height: 80px;
   font-size: 20px;
-  font-weight: 600;
-  background: skyblue;
+  /*font-weight: 600;*/
+  /*background: skyblue;*/
 }
 
 .nav {

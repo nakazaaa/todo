@@ -22,66 +22,37 @@ export default function index() {
         time:number,
         status:number,
     }
-    const router = useRouter();
-    const todoId = useMemo(()=> router.query.todo_id,[router]);
     const [title,setTitle] = useState('');
     const [text,setText] = useState('');
     const [status,setStatus] = useState(0);
     const [time,setTime] = useState(0);
-    const {open,setOpen} = useContext(loadingContext);
+    const router = useRouter();
+    const todoId = useMemo(()=> router.query.todo_id,[router]);
+    const {isOpenLoading,setIsOpenLoading} = useContext(loadingContext);
     const {isOpenDialog,setIsOpenDialog} = useContext(dialogContext);
+
     useEffect(() =>{
         if (!router.isReady) {
             return;
         }
-        setOpen(true);
+        setIsOpenLoading(true);
         const todo_id : string | string[] | undefined = router.query.todo_id;
         customAxios.get(process.env.NEXT_PUBLIC_API_HOST+'/api/todo/'+todo_id)
           .then((response) => {
-            setTitle(response.data.todo.title);
-            setText(response.data.todo.text);
-            setStatus(response.data.todo.status);
-            setTime(response.data.todo.time);
-            setOpen(false);
-        }).catch(()=>{
-            setOpen(false);
+              setTitle(response.data.todo.title);
+              setText(response.data.todo.text);
+              setStatus(response.data.todo.status);
+              setTime(response.data.todo.time);
+              setIsOpenLoading(false);
+          }).catch(()=>{
+              setIsOpenLoading(false);
           }
         )
     },[router.isReady,todoId]);
-    const handleChangeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setTitle(event.target.value);
-    };
 
-    const handleChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setText(event.target.value);
-    };
-
-    const handleChangeTime = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const inputTime = Number(event.target.value);
-        setTime(inputTime);
-    };
-    const [IsDialogOpen, setIsDialogOpen] = useState(false)
 
     const OpenDialog = () => {
         setIsOpenDialog(true);
-    }
-
-    const CloseDialog = () => {
-        setIsDialogOpen(false);
-    }
-
-    const EditTodo = () => {
-        setIsDialogOpen(false);
-        setOpen(true);
-        const PostData :PostData = {title:title,text:text,time:time,status:0}
-        const url:string = process.env.NEXT_PUBLIC_API_HOST+'/api/todo/'+router.query.todo_id
-        customAxios.post(url,PostData)
-          .then(function (response) {
-              console.log(response);
-              setOpen(false);
-              window.location.reload();
-          })
-          .catch(function (error) {console.log(error);});
     }
 
     let statusString = '';
@@ -129,7 +100,7 @@ export default function index() {
                   </Paper>
               </Box>
               <Grid item xs={8}>
-                  <CustomDialog title={title} text={text} time={time} status={status} />
+                  <CustomDialog title={title} text={text} time={time} status={status} dialogTitle={'Todo編集'} type={'update'} />
               </Grid>
           </>
       </Layout>

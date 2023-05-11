@@ -8,7 +8,8 @@ import {useRouter} from "next/router";
 import Input from '@mui/material/Input';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
-import {loadingContext} from "@/pages/_app";
+import GlobalProvider, {GlobalState} from "@/context/GlobalProvider";
+import Box from "@mui/material/Box";
 
 export default function TodoPage() {
     type PostData = {
@@ -21,23 +22,22 @@ export default function TodoPage() {
     const [title, setTitle] = useState("");
     const [text, setText] = useState("");
     const [time, setTime] = useState(0);
-    const {isOpenLoading,setIsOpenLoading} = useContext(loadingContext);
+    const {loading,dialog} = useContext(GlobalState);
     const [todoList,setTodoList] = useState([]);
-    const [IsDialogOpen, setIsDialogOpen] = useState(false)
 
     useEffect(() =>{
-        setIsOpenLoading(true);
+        loading.set(true);
         getTodoList().then(() => {
-            setIsOpenLoading(false);
+            loading.set(false);
         });
     },[]);
 
     const OpenDialog = () => {
-        setIsDialogOpen(true)
+        dialog.set(true)
     }
 
     const CloseDialog = () => {
-        setIsDialogOpen(false)
+        dialog.set(false)
     }
 
     const getTodoList = async (): Promise<void> => {
@@ -61,32 +61,35 @@ export default function TodoPage() {
     };
 
     const AddTodo = async (): Promise<void> => {
-        setIsDialogOpen(false);
-        setIsOpenLoading(true);
+        dialog.set(false);
+        loading.set(true);
         const PostData:PostData = {title:title,text:text,time:time,status:0};
         const url:string = process.env.NEXT_PUBLIC_API_HOST+'/api/todo';
         await customAxios.post(url,PostData)
             .then(function () {
                 getTodoList();
-                setIsOpenLoading(false);
+                loading.set(false);
             })
             .catch(function (error) {
-                  setIsOpenLoading(false);
+                loading.set(false);
             });
     }
 
 
     return (
         <>
-            <Fab onClick={OpenDialog} color="primary" aria-label="add">
-                <AddIcon/>
-            </Fab>
+            <Box sx={{marginBottom:10}}>
+                <Fab onClick={OpenDialog} color="primary" aria-label="add">
+                    <AddIcon/>
+                </Fab>
+            </Box>
+
             <TodoList todoList={todoList}/>
             <Grid item xs={8}>
                 {/*TODO ダイアログ統一化する*/}
                 <Dialog
                   sx={{ '& .MuiDialog-paper': { width: '80%' } }}
-                  open={IsDialogOpen}
+                  open={dialog.isOpen}
                 >
                     <DialogTitle bgcolor="secondary">
                         Todo追加

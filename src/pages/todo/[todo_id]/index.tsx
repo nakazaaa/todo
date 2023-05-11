@@ -11,9 +11,9 @@ import Dialog from "@mui/material/Dialog";
 import Input from "@mui/material/Input";
 import EditIcon from '@mui/icons-material/Edit';
 import Fab from '@mui/material/Fab';
-import {dialogContext, loadingContext} from "@/pages/_app";
 import {useMenu} from "@mui/base";
 import {CustomDialog} from "@/components/ui/dialog/CustomDialog";
+import {GlobalState} from "@/context/GlobalProvider";
 
 export default function index() {
     type PostData = {
@@ -22,20 +22,19 @@ export default function index() {
         time:number,
         status:number,
     }
+    const {loading,dialog} = useContext(GlobalState);
     const [title,setTitle] = useState('');
     const [text,setText] = useState('');
     const [status,setStatus] = useState(0);
     const [time,setTime] = useState(0);
     const router = useRouter();
     const todoId = useMemo(()=> router.query.todo_id,[router]);
-    const {isOpenLoading,setIsOpenLoading} = useContext(loadingContext);
-    const {isOpenDialog,setIsOpenDialog} = useContext(dialogContext);
 
     useEffect(() =>{
         if (!router.isReady) {
             return;
         }
-        setIsOpenLoading(true);
+        loading.set(true);
         const todo_id : string | string[] | undefined = router.query.todo_id;
         customAxios.get(process.env.NEXT_PUBLIC_API_HOST+'/api/todo/'+todo_id)
           .then((response) => {
@@ -43,16 +42,16 @@ export default function index() {
               setText(response.data.todo.text);
               setStatus(response.data.todo.status);
               setTime(response.data.todo.time);
-              setIsOpenLoading(false);
+              loading.set(false);
           }).catch(()=>{
-              setIsOpenLoading(false);
+            loading.set(false);
           }
         )
     },[router.isReady,todoId]);
 
 
     const OpenDialog = () => {
-        setIsOpenDialog(true);
+        dialog.set(true);
     }
 
     let statusString = '';
@@ -70,12 +69,12 @@ export default function index() {
               <Fab onClick={OpenDialog} color="success" aria-label="edit">
                   <EditIcon />
               </Fab>
-              <Box sx={{ marginTop: 8 }}>
+              <Box sx={{ marginTop: 8 ,marginLeft: 10}}>
                   <Paper
                     elevation={3}
                     sx={{
                         p: 4,
-                        width: "400px",
+                        width: "1000px",
                         m: "20px auto"
                     }}
                   >

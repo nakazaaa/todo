@@ -4,27 +4,16 @@ import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import {Loading} from "@/components/ui/loading/Loading";
 import React, {createContext, useState} from 'react'
+import GlobalProvider from "@/context/GlobalProvider";
 
-
-export const loadingContext =  createContext({} as {
-    isOpenLoading: boolean
-    setIsOpenLoading: React.Dispatch<React.SetStateAction<boolean>>
-})
-export const dialogContext =  createContext({} as {
-  isOpenDialog: boolean
-  setIsOpenDialog: React.Dispatch<React.SetStateAction<boolean>>
-})
 export default function App({ Component, pageProps }: AppProps) {
-    const [isOpenLoading, setIsOpenLoading] = useState(false);
-    const [isOpenDialog, setIsOpenDialog] = useState(false);
+
   return (
     <>
-      <loadingContext.Provider value={{isOpenLoading: isOpenLoading, setIsOpenLoading: setIsOpenLoading }}>
-        <dialogContext.Provider value={{isOpenDialog, setIsOpenDialog }}>
-          <Component {...pageProps} />
-          <Loading/>
-        </dialogContext.Provider>
-      </loadingContext.Provider>
+      <GlobalProvider >
+        <Component {...pageProps} />
+        <Loading/>
+      </GlobalProvider>
     </>
   )
 }

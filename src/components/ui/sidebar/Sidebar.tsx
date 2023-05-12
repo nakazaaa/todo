@@ -12,7 +12,12 @@ export  const Sidebar = () => {
   return (
     <>
       <Box className={sidebar.sidebar}>
-        サイドバー
+        <Link href={`/todo`} passHref>
+          todo
+        </Link>
+        <Link href={`/status`} passHref>
+          ヘッダー
+        </Link>
       </Box>
     </>
   )

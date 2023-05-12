@@ -1,0 +1,21 @@
+
+/*.layout{*/
+/*  margin-top: 110px;*/
+/*  !*width: 98vw;*!*/
+/*  height: 100vh;*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  !*background: rgb(237,242,247);*!*/
+/*  !*overflow:hidden;*!*/
+/*}*/
+.container {
+  display: flex;
+  flex-direction: column;
+}
+/*.main {*/
+/*  overflow:auto;*/
+/*  display: flex;*/
+/*  flex-direction: row;*/
+/*  flex-grow: 1;*/
+/*  background: rgb(237,242,247);*/
+/*}*/

@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Button, DialogTitle, Stack, TextField} from "@mui/material";
+import {Button, DialogTitle, MenuItem, Stack, TextField} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Input from "@mui/material/Input";
 import Dialog from "@mui/material/Dialog";
@@ -8,7 +8,7 @@ import customAxios from "@/lib/customAxios";
 import {useRouter} from "next/router";
 import {CustomButton} from "@/components/ui/button/CustomButton";
 import {GlobalState} from "@/context/GlobalProvider";
-
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 type Props = {
   title:string,
   text:string,
@@ -54,7 +54,10 @@ export  const CustomDialog = (props:Props) => {
     const inputTime = Number(event.target.value);
     setTime(inputTime);
   };
-
+  const handleChangeStatus = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const inputStatus = Number(event.target.value);
+    setStatus(inputStatus);
+  };
   const CloseDialog = () => {
     dialog.set(false);
   }
@@ -110,6 +113,19 @@ export  const CustomDialog = (props:Props) => {
           value={time}
           onChange={handleChangeTime}
         />
+        <Typography sx={{ margin: 1 }} variant="h6" gutterBottom>ステータス</Typography>
+        <Select
+            sx={{ margin: 4 }}
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={status}
+            label="Age"
+            onChange={handleChangeStatus}
+        >
+          <MenuItem value={0}>未対応</MenuItem>
+          <MenuItem value={1}>処理中</MenuItem>
+          <MenuItem value={2}>完了</MenuItem>
+        </Select>
       </Stack>
       <CustomButton sx={{ marginLeft: 10 ,marginRight:10 ,marginBottom:5}} color="error" onClick={CloseDialog}>Close</CustomButton>
       {(() => {

@@ -9,8 +9,29 @@
 /*  !*overflow:hidden;*!*/
 /*}*/
 .container {
+  /*padding-bottom: 10px;*/
+  height: 100%;
+  min-height: 100%;
+  user-select: none;
+  overflow-x: visible;
   display: flex;
+  flex-direction: row;
+}
+.item{
+  width: 326px;
+  position: relative;
+  overflow-y: visible;
+  display: flex;
+  flex-shrink: 0;
   flex-direction: column;
+  margin: 10px;
+  border: 1px solid ;
+  background-color: rgb(237,242,247);
+
+}
+.card{
+  height: 50px;
+  margin: 10px;
 }
 /*.main {*/
 /*  overflow:auto;*/

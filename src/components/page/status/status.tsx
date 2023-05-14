@@ -6,6 +6,7 @@ import customAxios from "@/lib/customAxios";
 import Typography from "@mui/material/Typography";
 import Grid from '@mui/material/Grid';
 import status from "./status.module.css";
+import Box from "@mui/material/Box";
 
 type TodoListDataEntity = {
   id:number,
@@ -20,29 +21,57 @@ export default function Status(props:Props) {
 
     return (
         <>
-          <Grid container spacing={{ xs: 2 }} columns={{ xs: 2, md: 6 }}>
-            {props.todoList.map((todo,index) => (
-              <Grid item xs={2} key={index}>
-                if (todo.status === 1) {
-                <Card sx={{ maxWidth: 345 }} >
-                  <CardContent>
-                    <h1>
-                      dddddd
-                    </h1>
-                  </CardContent>
-                </Card>
-              } else {
-                <Card sx={{ maxWidth: 345 }} >
-                  <CardContent>
-                    <h1>
-                      ggggg
-                    </h1>
-                  </CardContent>
-                </Card>
-              }
-              </Grid>
-            ))}
-          </Grid>
+          {/*<Grid container spacing={{ xs: 2 }} columns={{ xs: 2, md: 6 }}>*/}
+            <Box className={status.container} >
+                <Box className={status.item} >
+                    {props.todoList.map((todo,index) => (
+                        (() => {
+                            if (todo.status == 0) {
+                                return(
+                                    // <Box className={status.item} >
+                                    <Card className={status.card} sx={{ maxWidth: 345 }} >
+                                        <CardContent>
+                                            {todo.title}
+                                        </CardContent>
+                                    </Card>
+                                    // </Box>
+                                );
+                            }
+                        })()
+                    ))}
+                </Box>
+                <Box className={status.item} >
+                    {props.todoList.map((todo,index) => (
+                        (() => {
+                            if (todo.status == 1) {
+                                return(
+                                    <Card className={status.card} sx={{ maxWidth: 345 }} >
+                                        <CardContent>
+                                            {todo.title}gg
+                                        </CardContent>
+                                    </Card>
+                                );
+                            }
+                        })()
+                    ))}
+                </Box>
+                <Box className={status.item} >
+                    {props.todoList.map((todo,index) => (
+                        (() => {
+                            if (todo.status == 2) {
+                                return(
+                                    <Card className={status.card} sx={{ maxWidth: 345 }} >
+                                        <CardContent>
+                                            {todo.title}gg
+                                        </CardContent>
+                                    </Card>
+                                );
+                            }
+                        })()
+                    ))}
+                </Box>
+            </Box>
+
         </>
     )
 }

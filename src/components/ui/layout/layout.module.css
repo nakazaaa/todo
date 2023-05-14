@@ -19,5 +19,6 @@
   display: flex;
   flex-direction: row;
   flex-grow: 1;
-  background: rgb(237,242,247);
+  background: rgb(230,242,255);
+  /*background: rgb(237,242,247);*/
 }

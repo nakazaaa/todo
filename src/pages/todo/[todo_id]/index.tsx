@@ -63,6 +63,22 @@ export default function index() {
         statusString = '未対応'
     }
 
+    const statusLabel = (status:number) =>{
+        let statusLabel:string = '';
+        switch (status){
+            case 0:
+                statusLabel = '未対応'
+                break;
+            case 1:
+                statusLabel = '処理中'
+                break;
+            case 2:
+                statusLabel = '完了'
+                break;
+        }
+        return statusLabel;
+    }
+
     return (
       <Layout>
           <>
@@ -89,7 +105,7 @@ export default function index() {
                           </Grid>
                           <Grid item xs={12}  alignItems="center">
                               <Typography variant="h6" gutterBottom>ステータス</Typography>
-                              {statusString}
+                              {statusLabel(status)}
                           </Grid>
                           <Grid item xs={12}  alignItems="center">
                               <Typography variant="h6" gutterBottom>時間</Typography>

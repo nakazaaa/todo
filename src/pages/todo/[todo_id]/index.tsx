@@ -55,12 +55,12 @@ export default function index() {
         dialog.set(true);
     }
 
-    const EditTodo = useCallback(()=> {
+    const EditTodo = useCallback((data:PostData)=> {
         dialog.set(false);
         loading.set(true);
-        const PostData :PostData = {title:title,text:text,time:time,status:status}
-        const url:string = process.env.NEXT_PUBLIC_API_HOST+'/api/todo/'+router.query.todo_id
-        customAxios.post(url,PostData)
+        // const PostData :PostData = {title:title,text:text,time:time,status:status}
+        const url:string = process.env.NEXT_PUBLIC_API_HOST+'/api/todo/'+router.query.todo_id ;
+        customAxios.post(url,data)
           .then((response) => {
               customAxios.get(process.env.NEXT_PUBLIC_API_HOST+'/api/todo/'+router.query.todo_id)
                 .then((response) => {
@@ -72,7 +72,7 @@ export default function index() {
                 });
           })
           .catch(function (error) {console.log(error);});
-    },[]) ;
+    },[title, text, time, status]) ;
 
   const statusLabel = (status:number) =>{
     let statusLabel:string = '';

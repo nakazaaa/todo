@@ -13,7 +13,7 @@ import Box from "@mui/material/Box";
 import todo from "./todo.module.css";
 import {CustomDialog} from "@/components/ui/dialog/CustomDialog";
 
-type PostData = {
+export type PostData = {
     title:string,
     text:string,
     time:number,
@@ -38,12 +38,12 @@ export default function TodoPage() {
         dialog.set(true)
     }
 
-    const AddTodo = useCallback(()=> {
+    const AddTodo = useCallback((data: PostData)=> {
+      console.log(data)
         dialog.set(false);
         loading.set(true);
-        const PostData:PostData = {title:title,text:text,time:time,status:0};
         const url:string = process.env.NEXT_PUBLIC_API_HOST+'/api/todo';
-        customAxios.post(url,PostData)
+        customAxios.post(url,data)
           .then(()=> {
             loading.set(true);
             getTodoList()
@@ -52,7 +52,7 @@ export default function TodoPage() {
           .catch(()=> {
               loading.set(false);
           });
-    },[]) ;
+    },[title, text, time, status]) ;
 
     const getTodoList = useCallback(()=> {
           customAxios.get(process.env.NEXT_PUBLIC_API_HOST+'/api/todo')
@@ -61,19 +61,6 @@ export default function TodoPage() {
             loading.set(false);
         })
   },[todoList]) ;
-
-    const handleChangeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setTitle(event.target.value);
-    };
-
-    const handleChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setText(event.target.value);
-    };
-
-    const handleChangeTime = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const inputTime = Number(event.target.value);
-        setTime(inputTime);
-    };
 
     return (
         <>

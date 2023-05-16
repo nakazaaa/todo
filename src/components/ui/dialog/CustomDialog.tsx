@@ -9,6 +9,7 @@ import {useRouter} from "next/router";
 import {CustomButton} from "@/components/ui/button/CustomButton";
 import {GlobalState} from "@/context/GlobalProvider";
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import {PostData} from "@/components/page/todo";
 
 type Props = {
   title:string,
@@ -17,7 +18,7 @@ type Props = {
   status:number,
   dialogTitle:string,
   type:string,
-  collBack:()=>void
+  collBack:(data: PostData)=>void
 }
 
 
@@ -111,7 +112,7 @@ export  const CustomDialog = (props:Props) => {
         </Select>
       </Stack>
       <CustomButton sx={{ marginLeft: 10 ,marginRight:10 ,marginBottom:5}} color="error" onClick={CloseDialog}>Close</CustomButton>
-      <CustomButton sx={{ marginLeft: 10 ,marginRight:10 ,marginBottom:5}} color="success" onClick={props.collBack}>Update</CustomButton>
+      <CustomButton sx={{ marginLeft: 10 ,marginRight:10 ,marginBottom:5}} color="success" onClick={() => props.collBack({ title, text, time, status })}>Update</CustomButton>
     </Dialog>
   )
 }

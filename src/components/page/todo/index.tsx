@@ -19,6 +19,7 @@ export default function TodoPage() {
         status:number,
     }
 
+    /* REVIEW 事情がない限りjsではシングルクォート('')を使用する */
     const [title, setTitle] = useState("");
     const [text, setText] = useState("");
     const [time, setTime] = useState(0);
@@ -60,6 +61,7 @@ export default function TodoPage() {
         setTime(inputTime);
     };
 
+    /* REVIEW voidの使い方しかしてないのでvoidでいい */
     const AddTodo = async (): Promise<void> => {
         dialog.set(false);
         loading.set(true);
@@ -94,7 +96,12 @@ export default function TodoPage() {
                     <DialogTitle bgcolor="secondary">
                         Todo追加
                     </DialogTitle>
-                    <Stack >
+                    {/* 
+                    　　REVIEW
+                       　　きつきつすぎるので少しpaddingを設ける
+                         　CustomDialog.tsxと内容がかぶるのでコンポーネントでpropsで差分をつけられるようにする
+                    */}
+                    <Stack>
                         <Typography sx={{ margin: 1 }} variant="h6" gutterBottom>タイトル</Typography>
                         <TextField sx={{ margin: 2 }}
                                    id="outlined-basic"
@@ -113,6 +120,23 @@ export default function TodoPage() {
                             value={text}
                             onChange={handleChangeText}
                         />
+                        {/* 時間の単位がわかりづらいので予定時間（分）などで表記するか、以下などのようにする */}
+                        {/* <Box>
+                            <Typography sx={{ margin: 1 }} variant="h6" gutterBottom>時間</Typography>
+                            <Box display="flex" alignItems="end" textAlign="right">
+                                <Input
+                                    sx={{ margin: 2 }}
+                                    type="number"
+                                    inputProps={{
+                                        min: '0',
+                                        max: '999',
+                                        style:{ textAlign: 'end' }
+                                    }}
+                                />
+                                <Box lineHeight="4rem">分</Box>
+                            </Box>
+                        </Box>
+ */}
                         <Typography sx={{ margin: 1 }} variant="h6" gutterBottom>時間</Typography>
                         <Input
                             sx={{ margin: 2 }}

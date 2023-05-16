@@ -108,12 +108,20 @@
 body {
   margin: 0;
 }
-html{
+
+html {
   height: 100%;
-  overflow:hidden;
+  overflow: hidden;
 
 }
-h1{
+
+h1 {
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

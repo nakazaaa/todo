@@ -22,6 +22,7 @@ export  const Header = () => {
                     variant="h6"
                     noWrap
         >
+          {/* REVIEW headerのHOMEリンクはTOPページに当たるところに設定する　今回では/todo */}
           <Link href={`/`} passHref>
             ヘッダー
           </Link>

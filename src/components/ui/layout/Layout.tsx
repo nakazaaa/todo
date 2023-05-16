@@ -22,6 +22,7 @@ export const Layout = ({ children }: LayoutProps) => {
     <Box className={layout.layout}>
       <Header/>
         <Box className={layout.main}>
+          {/*　REVIEW　bodyのスクロール時サイドバーもスクロールしてしまうのでスクロールの対象を切り分けたい */}
           <Sidebar/>
           <Box className={layout.contents}>
             {children}

@@ -8,6 +8,11 @@ import Typography from "@mui/material/Typography";
 import { useRouter } from 'next/router';
 import {AuthInfoContext} from "@/lib/AuthContextProvider";
 
+/* 
+ * REVIEW
+ * パスワードフォーカス時エンター押下でログインAPI発火してほしい
+ * ログイン中がわかりづらいのでinputとbuttonをdisabledにしたりローディングを入れたりして整える
+ */
 export default function Login() {
     const router = useRouter();
     const [email,setEmail] = useState('');

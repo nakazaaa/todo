@@ -51,10 +51,12 @@ export  const CustomDialog = (props:Props) => {
   };
 
   const handleChangeTime = (event: React.ChangeEvent<HTMLInputElement>) => {
+    /* 数字以外を入力された際　全角数字入力の考慮不足　NaNが表示されることがある */
     const inputTime = Number(event.target.value);
     setTime(inputTime);
   };
-  const handleChangeStatus = (event: React.ChangeEvent<HTMLInputElement>) => {
+  /* REVIEW eventの型を合わせる　今回はSelectChangeEvent<number> */
+  const handleChangeStatus = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const inputStatus = Number(event.target.value);
     setStatus(inputStatus);
   };
@@ -87,7 +89,7 @@ export  const CustomDialog = (props:Props) => {
       <DialogTitle bgcolor="secondary">
         {dialogTitle}
       </DialogTitle>
-      <Stack >
+      <Stack>
         <Typography sx={{ margin: 1 }} variant="h6" gutterBottom>タイトル</Typography>
         <TextField sx={{ margin: 2 }}
                    id="outlined-basic"

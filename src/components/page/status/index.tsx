@@ -5,12 +5,6 @@ import Status from "@/components/page/status/status";
 
 
 export default function TodoStatus() {
-    type PostData = {
-        title:string,
-        text:string,
-        time:number,
-        status:number,
-    }
     const {loading,dialog} = useContext(GlobalState);
     const [todoList,setTodoList] = useState([]);
 

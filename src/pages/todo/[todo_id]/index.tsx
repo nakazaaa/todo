@@ -1,5 +1,5 @@
 import {Layout} from "@/components/ui/layout/Layout"
-import {SetStateAction, useContext, useEffect, useMemo, useState} from "react";
+import {SetStateAction, useCallback, useContext, useEffect, useMemo, useState} from "react";
 import customAxios from "@/lib/customAxios";
 import Box from "@mui/material/Box";
 import { useRouter } from 'next/router'
@@ -15,13 +15,14 @@ import {useMenu} from "@mui/base";
 import {CustomDialog} from "@/components/ui/dialog/CustomDialog";
 import {GlobalState} from "@/context/GlobalProvider";
 
+type PostData = {
+    title:string,
+    text:string,
+    time:number,
+    status:number,
+}
+
 export default function index() {
-    type PostData = {
-        title:string,
-        text:string,
-        time:number,
-        status:number,
-    }
     const {loading,dialog} = useContext(GlobalState);
     const [title,setTitle] = useState('');
     const [text,setText] = useState('');
@@ -54,32 +55,42 @@ export default function index() {
         dialog.set(true);
     }
 
-    let statusString = '';
-    if (status === 1){
-        statusString = '処理中'
-    }else if (status === 2){
-        statusString = '完了'
-    }else if (status === 0){
-        statusString = '未対応'
-    }
+    const EditTodo = useCallback(()=> {
+        dialog.set(false);
+        loading.set(true);
+        const PostData :PostData = {title:title,text:text,time:time,status:status}
+        const url:string = process.env.NEXT_PUBLIC_API_HOST+'/api/todo/'+router.query.todo_id
+        customAxios.post(url,PostData)
+          .then((response) => {
+              customAxios.get(process.env.NEXT_PUBLIC_API_HOST+'/api/todo/'+router.query.todo_id)
+                .then((response) => {
+                    loading.set(false);
+                    setTitle(response.data.todo.title);
+                    setText(response.data.todo.text);
+                    setStatus(response.data.todo.status);
+                    setTime(response.data.todo.time);
+                });
+          })
+          .catch(function (error) {console.log(error);});
+    },[]) ;
 
-    const statusLabel = (status:number) =>{
-        let statusLabel:string = '';
-        switch (status){
-            case 0:
-                statusLabel = '未対応'
-                break;
-            case 1:
-                statusLabel = '処理中'
-                break;
-            case 2:
-                statusLabel = '完了'
-                break;
-        }
-        return statusLabel;
+  const statusLabel = (status:number) =>{
+    let statusLabel:string = '';
+    switch (status){
+      case 0:
+        statusLabel = '未対応'
+        break;
+      case 1:
+        statusLabel = '処理中'
+        break;
+      case 2:
+        statusLabel = '完了'
+        break;
     }
+    return statusLabel;
+  }
 
-    return (
+  return (
       <Layout>
           <>
               <Fab onClick={OpenDialog} color="success" aria-label="edit">
@@ -115,7 +126,7 @@ export default function index() {
                   </Paper>
               </Box>
               <Grid item xs={8}>
-                  <CustomDialog title={title} text={text} time={time} status={status} dialogTitle={'Todo編集'} type={'update'} />
+                  <CustomDialog title={title} text={text} time={time} status={status} dialogTitle={'Todo編集'} type={'update'} collBack={EditTodo} />
               </Grid>
           </>
       </Layout>

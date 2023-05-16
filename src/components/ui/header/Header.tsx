@@ -8,6 +8,7 @@ import customAxios from "@/lib/customAxios";
 import Link from "next/link";
 
 export  const Header = () => {
+
     const router = useRouter();
     const logout = () => {
         customAxios.post(process.env.NEXT_PUBLIC_API_HOST+'/api/logout')
@@ -15,6 +16,7 @@ export  const Header = () => {
                 router.push('/login');
             })
     }
+
   return (
     <>
       <header className={header.header}>

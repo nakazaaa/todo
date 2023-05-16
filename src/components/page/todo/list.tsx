@@ -18,7 +18,7 @@ export default function TodoList(props:Props) {
 
     return (
         <>
-            <Grid container spacing={{ xs: 2 }} columns={{ xs: 2, md: 6 }}>
+            <Grid container spacing={{ xs: 2 }} columns={{ xs: 2, md: 10 }}>
             {props.todoList.map((todo,index) => (
                 <Grid item xs={2} key={index}>
                     <Link href={`/todo/${encodeURIComponent(todo.id)}`} passHref>

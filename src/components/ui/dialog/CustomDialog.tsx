@@ -9,6 +9,8 @@ import {useRouter} from "next/router";
 import {CustomButton} from "@/components/ui/button/CustomButton";
 import {GlobalState} from "@/context/GlobalProvider";
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import {PostData} from "@/components/page/todo";
+
 type Props = {
   title:string,
   text:string,
@@ -16,14 +18,10 @@ type Props = {
   status:number,
   dialogTitle:string,
   type:string,
+  collBack:(data: PostData)=>void
 }
 
-type PostData = {
-  title:string,
-  text:string,
-  time:number,
-  status:number,
-}
+
 
 export  const CustomDialog = (props:Props) => {
 
@@ -34,6 +32,7 @@ export  const CustomDialog = (props:Props) => {
   const dialogTitle = props.dialogTitle;
   const router = useRouter();
   const {loading,dialog} = useContext(GlobalState);
+  const [todoList,setTodoList] = useState([]);
 
   useEffect(() => {
     setTitle(props.title);
@@ -54,29 +53,14 @@ export  const CustomDialog = (props:Props) => {
     const inputTime = Number(event.target.value);
     setTime(inputTime);
   };
-  const handleChangeStatus = (event: React.ChangeEvent<HTMLInputElement>) => {
+
+  const handleChangeStatus = (event: SelectChangeEvent<number>) => {
     const inputStatus = Number(event.target.value);
     setStatus(inputStatus);
   };
+
   const CloseDialog = () => {
     dialog.set(false);
-  }
-
-
-  const EditTodo = () => {
-    dialog.set(false);
-    loading.set(true);
-    const PostData :PostData = {title:title,text:text,time:time,status:status}
-    const url:string = process.env.NEXT_PUBLIC_API_HOST+'/api/todo/'+router.query.todo_id
-
-    customAxios.post(url,PostData)
-      .then((response) => {
-        customAxios.get(process.env.NEXT_PUBLIC_API_HOST+'/api/todo/'+router.query.todo_id)
-          .then((response) => {
-            loading.set(false);
-          });
-      })
-      .catch(function (error) {console.log(error);});
   }
 
   return (
@@ -128,13 +112,7 @@ export  const CustomDialog = (props:Props) => {
         </Select>
       </Stack>
       <CustomButton sx={{ marginLeft: 10 ,marginRight:10 ,marginBottom:5}} color="error" onClick={CloseDialog}>Close</CustomButton>
-      {(() => {
-        if (props.type === 'update') {
-          return <CustomButton sx={{ marginLeft: 10 ,marginRight:10 ,marginBottom:5}} color="success" onClick={EditTodo}>Update</CustomButton>
-        } else if (props.type === 'create') {
-          // return <CustomButton  sx={{ marginLeft: 10 ,marginRight:10 ,marginBottom:5}} onClick={AddTodo}>Add</CustomButton>
-        }
-      })()}
+      <CustomButton sx={{ marginLeft: 10 ,marginRight:10 ,marginBottom:5}} color="success" onClick={() => props.collBack({ title, text, time, status })}>Update</CustomButton>
     </Dialog>
   )
 }

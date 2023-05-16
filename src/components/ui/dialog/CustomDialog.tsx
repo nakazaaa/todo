@@ -3,7 +3,7 @@ import {Button, DialogTitle, MenuItem, Stack, TextField} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Input from "@mui/material/Input";
 import Dialog from "@mui/material/Dialog";
-import {useContext, useEffect, useState} from "react";
+import {useCallback, useContext, useEffect, useState} from "react";
 import customAxios from "@/lib/customAxios";
 import {useRouter} from "next/router";
 import {CustomButton} from "@/components/ui/button/CustomButton";
@@ -63,6 +63,10 @@ export  const CustomDialog = (props:Props) => {
     dialog.set(false);
   }
 
+  const onSubmit = useCallback(() => {
+    props.collBack({ title, text, time, status }) ;
+  },[title, text, time, status, props.collBack]) ;
+
   return (
     <Dialog
       sx={{ '& .MuiDialog-paper': { width: '80%' } }}
@@ -111,8 +115,8 @@ export  const CustomDialog = (props:Props) => {
           <MenuItem value={2}>完了</MenuItem>
         </Select>
       </Stack>
-      <CustomButton sx={{ marginLeft: 10 ,marginRight:10 ,marginBottom:5}} color="error" onClick={CloseDialog}>Close</CustomButton>
-      <CustomButton sx={{ marginLeft: 10 ,marginRight:10 ,marginBottom:5}} color="success" onClick={() => props.collBack({ title, text, time, status })}>Update</CustomButton>
+      <CustomButton color="error" onClick={CloseDialog}>Close</CustomButton>
+      <CustomButton color="success" onClick={onSubmit}>Update</CustomButton>
     </Dialog>
   )
 }

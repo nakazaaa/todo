@@ -38,8 +38,7 @@ export default function TodoPage() {
         dialog.set(true)
     }
 
-    const AddTodo = useCallback((data: PostData)=> {
-      console.log(data)
+    const addTodo = useCallback((data: PostData)=> {
         dialog.set(false);
         loading.set(true);
         const url:string = process.env.NEXT_PUBLIC_API_HOST+'/api/todo';
@@ -71,7 +70,7 @@ export default function TodoPage() {
             </Box>
             <TodoList todoList={todoList}/>
             <Grid item xs={8}>
-                <CustomDialog title={title} text={text} time={time} status={status} dialogTitle={'Todo追加'} type={'create'} collBack={AddTodo} />
+                <CustomDialog title={title} text={text} time={time} status={status} dialogTitle={'Todo追加'} type={'create'} collBack={addTodo} />
             </Grid>
 
         </>

@@ -55,7 +55,7 @@ export default function index() {
         dialog.set(true);
     }
 
-    const EditTodo = useCallback((data:PostData)=> {
+    const editTodo = useCallback((data:PostData)=> {
         dialog.set(false);
         loading.set(true);
         // const PostData :PostData = {title:title,text:text,time:time,status:status}
@@ -126,7 +126,7 @@ export default function index() {
                   </Paper>
               </Box>
               <Grid item xs={8}>
-                  <CustomDialog title={title} text={text} time={time} status={status} dialogTitle={'Todo編集'} type={'update'} collBack={EditTodo} />
+                  <CustomDialog title={title} text={text} time={time} status={status} dialogTitle={'Todo編集'} type={'update'} collBack={editTodo} />
               </Grid>
           </>
       </Layout>

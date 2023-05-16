@@ -5,7 +5,7 @@ import * as React from "react";
 import customAxios from "@/lib/customAxios";
 import Typography from "@mui/material/Typography";
 import Grid from '@mui/material/Grid';
-
+import todoStyle from "./todo.module.css";
 type TodoListDataEntity = {
   id:number,
   title:string,
@@ -28,7 +28,9 @@ export default function TodoList(props:Props) {
                                     {todo.title}
                                 </h1>
                                 <Typography variant="body2" color="text.secondary">
+                                  <div className={todoStyle.text}>
                                     {todo.text}
+                                  </div>
                                 </Typography>
                             </CardContent>
                         </Card>

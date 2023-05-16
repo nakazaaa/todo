@@ -3,3 +3,8 @@
   position: fixed;
   z-index: 99999;
 }
+
+.text{
+  overflow:hidden;
+  text-overflow:ellipsis;
+}

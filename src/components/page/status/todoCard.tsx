@@ -18,10 +18,7 @@ type Props = {
   todo:TodoListDataEntity,
   todoStatus:number
 }
-
   const CARD_SX = { maxWidth: 345 } as const;
-
-
 
 export default function TodoCard(props:Props) {
   const {todo,todoStatus} = props;
@@ -34,9 +31,7 @@ export default function TodoCard(props:Props) {
                   {todo.title}
                 </CardContent>
               </Card>
-              :
-              <></>
-
+              :<></>
           }
 
         </>

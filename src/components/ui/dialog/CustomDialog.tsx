@@ -10,6 +10,7 @@ import {CustomButton} from "@/components/ui/button/CustomButton";
 import {GlobalState} from "@/context/GlobalProvider";
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import {PostData} from "@/components/page/todo";
+import Box from "@mui/material/Box";
 
 type Props = {
   title:string,
@@ -94,13 +95,17 @@ export  const CustomDialog = (props:Props) => {
           onChange={handleChangeText}
         />
         <Typography sx={{ margin: 1 }} variant="h6" gutterBottom>時間</Typography>
-        <Input
-          sx={{ margin: 2 }}
-          multiline
-          rows={1}
-          value={time}
-          onChange={handleChangeTime}
-        />
+        <Box>
+          <Input
+            sx={{paddingRight:20 , marginLeft:10}}
+            multiline
+            rows={1}
+            value={time}
+            onChange={handleChangeTime}
+            placeholder="Type something…"
+          />
+          分
+        </Box>
         <Typography sx={{ margin: 1 }} variant="h6" gutterBottom>ステータス</Typography>
         <Select
             sx={{ margin: 4 }}

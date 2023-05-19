@@ -24,7 +24,7 @@ export  const Header = () => {
                     variant="h6"
                     noWrap
         >
-          <Link href={`/`} passHref>
+          <Link href={`/todo`} passHref>
             ヘッダー
           </Link>
         </Typography>

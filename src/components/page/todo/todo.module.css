@@ -8,3 +8,9 @@
   overflow:hidden;
   text-overflow:ellipsis;
 }
+
+.list{
+  margin-top: 80px;
+  overflow: auto;
+  height: 70%;
+}

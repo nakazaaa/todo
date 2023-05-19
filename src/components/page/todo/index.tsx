@@ -68,11 +68,12 @@ export default function TodoPage() {
                     <AddIcon/>
                 </Fab>
             </Box>
+          <Box  className={todo.list}>
             <TodoList todoList={todoList}/>
+          </Box>
             <Grid item xs={8}>
                 <CustomDialog title={title} text={text} time={time} status={status} dialogTitle={'Todo追加'} type={'create'} collBack={addTodo} />
             </Grid>
-
         </>
     )
 }

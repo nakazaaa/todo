@@ -10,7 +10,6 @@
 /*}*/
 .container {
   /*padding-bottom: 10px;*/
-  height: 100%;
   min-height: 100%;
   user-select: none;
   overflow-x: visible;
@@ -18,11 +17,12 @@
   flex-direction: row;
 }
 .item{
+  height: 700px;
   width: 326px;
-  position: relative;
-  display: flex;
-  flex-shrink: 0;
-  flex-direction: column;
+  /*position: relative;*/
+  /*display: flex;*/
+  /*flex-shrink: 0;*/
+  /*flex-direction: column;*/
   margin: 10px;
   border: 1px solid ;
   background-color: rgb(237,242,247);

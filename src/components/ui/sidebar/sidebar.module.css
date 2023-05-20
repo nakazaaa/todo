@@ -1,0 +1,15 @@
+.sidebar {
+  width: 200px;
+  height: 100%;
+  background-color: rgb(22,22,22);
+  color: aliceblue;
+}
+.link {
+  color: white;
+  text-decoration: none;
+  margin: 10px;
+}
+
+@media (max-width: 800px) {
+
+}

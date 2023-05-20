@@ -4,23 +4,16 @@ import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import {Loading} from "@/components/ui/loading/Loading";
 import React, {createContext, useState} from 'react'
-
-
-export const loadingContext =  createContext({} as {
-    open: boolean
-    setOpen: React.Dispatch<React.SetStateAction<boolean>>
-})
+import GlobalProvider from "@/context/GlobalProvider";
 
 export default function App({ Component, pageProps }: AppProps) {
-    const [open, setOpen] = useState(false);
+
   return (
     <>
-        <loadingContext.Provider value={{open, setOpen }}>
-            <Component {...pageProps} />
-            <Loading/>
-        </loadingContext.Provider>
-
+      <GlobalProvider >
+        <Component {...pageProps} />
+        <Loading/>
+      </GlobalProvider>
     </>
-
   )
 }

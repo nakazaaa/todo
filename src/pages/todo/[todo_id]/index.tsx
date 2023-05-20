@@ -1,5 +1,5 @@
 import {Layout} from "@/components/ui/layout/Layout"
-import {SetStateAction, useContext, useEffect, useMemo, useState} from "react";
+import {SetStateAction, useCallback, useContext, useEffect, useMemo, useState} from "react";
 import customAxios from "@/lib/customAxios";
 import Box from "@mui/material/Box";
 import { useRouter } from 'next/router'
@@ -11,99 +11,98 @@ import Dialog from "@mui/material/Dialog";
 import Input from "@mui/material/Input";
 import EditIcon from '@mui/icons-material/Edit';
 import Fab from '@mui/material/Fab';
-import {loadingContext} from "@/pages/_app";
 import {useMenu} from "@mui/base";
+import {CustomDialog} from "@/components/ui/dialog/CustomDialog";
+import {GlobalState} from "@/context/GlobalProvider";
+
+type PostData = {
+    title:string,
+    text:string,
+    time:number,
+    status:number,
+}
 
 export default function index() {
-    type PostData = {
-        title:string,
-        text:string,
-        time:number,
-        status:number,
-    }
-    const router = useRouter();
-    const todoId = useMemo(()=> router.query.todo_id,[router]);
+    const {loading,dialog} = useContext(GlobalState);
     const [title,setTitle] = useState('');
     const [text,setText] = useState('');
     const [status,setStatus] = useState(0);
     const [time,setTime] = useState(0);
-    const {open,setOpen} = useContext(loadingContext);
+    const router = useRouter();
+    const todoId = useMemo(()=> router.query.todo_id,[router]);
+
     useEffect(() =>{
         if (!router.isReady) {
             return;
         }
-        setOpen(true);
+        loading.set(true);
         const todo_id : string | string[] | undefined = router.query.todo_id;
         customAxios.get(process.env.NEXT_PUBLIC_API_HOST+'/api/todo/'+todo_id)
           .then((response) => {
-            setTitle(response.data.todo.title);
-            setText(response.data.todo.text);
-            setStatus(response.data.todo.status);
-            setTime(response.data.todo.time);
-            setOpen(false);
-        }).catch(()=>{
-            setOpen(false);
+              setTitle(response.data.todo.title);
+              setText(response.data.todo.text);
+              setStatus(response.data.todo.status);
+              setTime(response.data.todo.time);
+              loading.set(false);
+          }).catch(()=>{
+            loading.set(false);
           }
         )
     },[router.isReady,todoId]);
-    const handleChangeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setTitle(event.target.value);
-    };
 
-    const handleChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setText(event.target.value);
-    };
-
-    const handleChangeTime = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const inputTime = Number(event.target.value);
-        setTime(inputTime);
-    };
-    const [IsDialogOpen, setIsDialogOpen] = useState(false)
 
     const OpenDialog = () => {
-        setIsDialogOpen(true);
+        dialog.set(true);
     }
 
-    const CloseDialog = () => {
-        setIsDialogOpen(false);
-    }
-
-    const EditTodo = () => {
-        setIsDialogOpen(false);
-        setOpen(true);
-        const PostData :PostData = {title:title,text:text,time:time,status:0}
-        const url:string = process.env.NEXT_PUBLIC_API_HOST+'/api/todo/'+router.query.todo_id
-        customAxios.post(url,PostData)
-          .then(function (response) {
-              console.log(response);
-              setOpen(false);
-              window.location.reload();
+    const editTodo = useCallback((data:PostData)=> {
+        dialog.set(false);
+        loading.set(true);
+        // const PostData :PostData = {title:title,text:text,time:time,status:status}
+        const url:string = process.env.NEXT_PUBLIC_API_HOST+'/api/todo/'+router.query.todo_id ;
+        customAxios.post(url,data)
+          .then((response) => {
+              customAxios.get(process.env.NEXT_PUBLIC_API_HOST+'/api/todo/'+router.query.todo_id)
+                .then((response) => {
+                    loading.set(false);
+                    setTitle(response.data.todo.title);
+                    setText(response.data.todo.text);
+                    setStatus(response.data.todo.status);
+                    setTime(response.data.todo.time);
+                });
           })
           .catch(function (error) {console.log(error);});
-    }
+    },[title, text, time, status]) ;
 
-    let statusString = '';
-    if (status === 1){
-        statusString = '処理中'
-    }else if (status === 2){
-        statusString = '完了'
-    }else if (status === 0){
-        statusString = '未対応'
+  const statusLabel = (status:number) =>{
+    let statusLabel:string = '';
+    switch (status){
+      case 0:
+        statusLabel = '未対応'
+        break;
+      case 1:
+        statusLabel = '処理中'
+        break;
+      case 2:
+        statusLabel = '完了'
+        break;
     }
+    return statusLabel;
+  }
 
-    return (
+  return (
       <Layout>
           <>
               <Fab onClick={OpenDialog} color="success" aria-label="edit">
                   <EditIcon />
               </Fab>
-              <Box sx={{ marginTop: 8 }}>
+              <Box sx={{ marginTop: 8 ,marginLeft: 5}}>
                   <Paper
-                    elevation={3}
+                    elevation={1}
                     sx={{
-                        p: 4,
-                        width: "400px",
-                        m: "20px auto"
+                        p: 2,
+                        width: "80%",
+                        // m: "20px auto"
                     }}
                   >
                       <Grid container spacing={2} justifyContent="center" alignItems="center">
@@ -117,7 +116,7 @@ export default function index() {
                           </Grid>
                           <Grid item xs={12}  alignItems="center">
                               <Typography variant="h6" gutterBottom>ステータス</Typography>
-                              {statusString}
+                              {statusLabel(status)}
                           </Grid>
                           <Grid item xs={12}  alignItems="center">
                               <Typography variant="h6" gutterBottom>時間</Typography>
@@ -127,43 +126,7 @@ export default function index() {
                   </Paper>
               </Box>
               <Grid item xs={8}>
-                  {/*TODO ダイアログ統一化する*/}
-                  <Dialog
-                    sx={{ '& .MuiDialog-paper': { width: '80%' } }}
-                          open={IsDialogOpen}>
-                      <DialogTitle bgcolor="secondary">
-                          Todo編集
-                      </DialogTitle>
-                      <Stack >
-                          <Typography sx={{ margin: 1 }} variant="h6" gutterBottom>タイトル</Typography>
-                          <TextField sx={{ margin: 2 }}
-                                     id="outlined-basic"
-                                     variant="outlined"
-                                     value={title}
-                                     onChange={handleChangeTitle}
-                          />
-                          <Typography sx={{ margin: 1 }} variant="h6" gutterBottom>内容</Typography>
-                          <TextField
-                            sx={{ margin: 2 }}
-                            id="filled-textarea"
-                            multiline
-                            variant="filled"
-                            rows={4}
-                            value={text}
-                            onChange={handleChangeText}
-                          />
-                          <Typography sx={{ margin: 1 }} variant="h6" gutterBottom>時間</Typography>
-                          <Input
-                            sx={{ margin: 2 }}
-                            multiline
-                            rows={1}
-                            value={time}
-                            onChange={handleChangeTime}
-                          />
-                      </Stack>
-                      <Button sx={{ marginLeft: 10 ,marginRight:10 ,marginBottom:5}} color="error" onClick={CloseDialog}>Close</Button>
-                      <Button sx={{ marginLeft: 10 ,marginRight:10 ,marginBottom:5}} color="success" onClick={EditTodo}>Update</Button>
-                  </Dialog>
+                  <CustomDialog title={title} text={text} time={time} status={status} dialogTitle={'Todo編集'} type={'update'} collBack={editTodo} />
               </Grid>
           </>
       </Layout>

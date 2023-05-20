@@ -1,0 +1,16 @@
+
+.icon{
+  position: fixed;
+  z-index: 99999;
+}
+
+.text{
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.list{
+  margin-top: 80px;
+  overflow: auto;
+  height: 70%;
+}

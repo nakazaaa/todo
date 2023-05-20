@@ -96,13 +96,13 @@ export default function index() {
               <Fab onClick={OpenDialog} color="success" aria-label="edit">
                   <EditIcon />
               </Fab>
-              <Box sx={{ marginTop: 8 ,marginLeft: 10}}>
+              <Box sx={{ marginTop: 8 ,marginLeft: 5}}>
                   <Paper
-                    elevation={3}
+                    elevation={1}
                     sx={{
-                        p: 4,
-                        width: "1000px",
-                        m: "20px auto"
+                        p: 2,
+                        width: "80%",
+                        // m: "20px auto"
                     }}
                   >
                       <Grid container spacing={2} justifyContent="center" alignItems="center">

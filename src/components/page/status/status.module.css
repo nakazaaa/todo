@@ -15,6 +15,7 @@
   overflow-x: visible;
   display: flex;
   flex-direction: row;
+
 }
 .item{
   height: 700px;
@@ -27,16 +28,30 @@
   border: 1px solid ;
   background-color: rgb(237,242,247);
   overflow:auto;
-
 }
 .card{
   height: 50px;
-  margin: 10px;
+  width: 250px;
+  margin: 20px;
 }
-/*.main {*/
-/*  overflow:auto;*/
-/*  display: flex;*/
-/*  flex-direction: row;*/
-/*  flex-grow: 1;*/
-/*  background: rgb(237,242,247);*/
-/*}*/
+
+@media (max-width: 800px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+
+  }
+  .item{
+    height: 150px;
+    width: 326px;
+    /*margin: 10px;*/
+    border: 1px solid ;
+    background-color: rgb(237,242,247);
+    overflow:auto;
+  }
+  .card{
+    height: 50px;
+    width: 300px;
+    margin: 10px;
+  }
+}

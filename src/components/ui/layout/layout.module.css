@@ -11,7 +11,7 @@
 .contents {
   overflow:auto;
   margin-left: 110px;
-  padding-top: 110px;
+  padding-top: 30px;
   height: 100%;
   width: 100%;
 }
@@ -22,4 +22,22 @@
   flex-grow: 1;
   background: rgb(230,242,255);
   /*background: rgb(237,242,247);*/
+}
+
+@media (max-width: 800px) {
+  .contents {
+    overflow:auto;
+    margin-left: 10px;
+    padding-top: 30px;
+    height: 100%;
+    width: 100%;
+  }
+  .main {
+    overflow:hidden;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    background: rgb(230,242,255);
+    /*background: rgb(237,242,247);*/
+  }
 }
